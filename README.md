@@ -166,7 +166,7 @@ O projeto adota uma abordagem em camadas (estilo ETL), onde a base de dados brut
 ## 💻 Como Usar o Modelo Salvo (.pkl)
 
 Para carregar o modelo vencedor e realizar novas predições em novos conjuntos de dados (como novos períodos logísticos), utilize o seguinte script em Python:
-
+```python
 import joblib
 import pandas as pd
 
@@ -181,7 +181,7 @@ novos_dados = pd.read_csv("caminho/para/novos_dados.csv")
 predicoes = modelo_carregado.predict(novos_dados)
 
 # 4. Visualizar os resultados das classes previstas (Baixo, Médio, Alto)
-print(predicoes)
+print(predicoes)```
 
 ---
 
