@@ -181,19 +181,19 @@ novos_dados = pd.read_csv("caminho/para/novos_dados.csv")
 predicoes = modelo_carregado.predict(novos_dados)
 
 # 4. Visualizar os resultados das classes previstas (Baixo, Médio, Alto)
-print(predicoes)```
-
+print(predicoes)
+```
 ---
 
 ## 🚀 Conclusão
 
-O projeto demonstrou a eficácia do uso de **Machine Learning** para prever padrões de consumo de combustíveis.  
-O **Random Forest otimizado** consolidou-se como modelo campeão, garantindo robustez, estabilidade e aplicabilidade em **segmentação de clientes, previsão de demanda e redução de custos operacionais**.  
+* O projeto demonstrou a eficácia do uso de **Machine Learning** para prever padrões de consumo de combustíveis.
+* O **Random Forest otimizado** consolidou-se como modelo campeão, garantindo robustez, estabilidade e aplicabilidade em segmentações logísticas.
 
 ---
 
-📊 **Próximos Passos (Business Intelligence):**  
-Posteriormente, será integrado e apresentado um dashboard interativo em Power BI, utilizando a base de importância dos recursos (`importancia_recursos_modelo.csv`) para consolidar as métricas de desempenho e os *insights* preditivos obtidos neste estudo.
+📊 **Próximos Passos (Business Intelligence):**
+Posteriormente, será integrado e apresentado um dashboard interativo em Power BI, utilizando a base de importância dos recursos.
 
 ---
 
@@ -201,6 +201,6 @@ Posteriormente, será integrado e apresentado um dashboard interativo em Power B
 
 Projeto desenvolvido com foco em aplicações reais na indústria energética brasileira.
 
-**Maria Santos** — Analista/Cientista de Dados - Autônoma  
+**Maria Santos** — Analista/Cientista de Dados — Autônoma  
 Campinas/SP, Brasil  
 Data: **09/2026**
