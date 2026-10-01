@@ -1,0 +1,33 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache e logs
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# Ambientes virtuais
+venv/
+.env/
+
+# Pastas de sistema e checkpoints
+.ipynb_checkpoints/
+__pycache__/
+*.swp
+
+
+# Gráficos gerados
+*.png
+*.jpg
+*.jpeg
+
+
+# Dados e arquivos intermediários
+*.csv
+*.zip
+
+# Modelos treinados
+*.pkl
+

@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+seaborn
+unidecode
+category_encoders
+joblib
+scikit-learn
+xgboost
+lightgbm
+imbalanced-learn
