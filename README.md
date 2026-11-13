@@ -37,12 +37,16 @@ O cenário original apresentava um dataset altamente desbalanceado. O principal 
 
 O repositório está organizado com os seguintes arquivos e artefatos principais:
 ```text
-├── .gitignore                                     # Arquivos e pastas ignorados 
-├── Análise Preditiva e Logística de Vendas.pptx  # Apresentação do Relatório executivo do projeto (slides)
-├── Petrobras_PowerBI_Final.pbix                  # Dashboard Executivo & Visualização de Dados (Power BI)
-├── Petrobras_Vendas_2007_a_2017.ipynb            # Jupyter Notebook principal com todo o código e análise
-├── README.md                                     # Documentação principal do projeto
-└── requirements.txt                              # Dependências e bibliotecas utilizadas
+├── .gitignore                                             # Arquivos e pastas ignorados
+├── Analise_Preditiva_e_Logistica_Vendas_Combustiveis.pptx # Apresentação executiva do projeto (slides)
+├── Consultas_Petrobras_2007_2017.sql                      # Queries exploratórias em T-SQL (filtros, agrupamentos e KPIs)
+├── Criar_BD_Petrobras_2007_2017.sql                       # Script DDL e ingestão massiva via BULK INSERT (SQL Server)
+├── Petrobras_PowerBI_Final.pbix                           # Dashboard Executivo & Visualização de Dados (Power BI)
+├── Petrobras_Vendas_2007_a_2017.ipynb                     # Jupyter Notebook principal com todo o código e análise
+├── README.md                                              # Documentação principal do projeto
+├── imagem_SQL_Consultas_Petrobras_2007_2017.png           # Evidência de execução das consultas em T-SQL
+├── imagem_SQL_Criar_BD_Petrobras_2007_2017.png            # Evidência de carga (BULK INSERT) no SQL Server
+└── requirements.txt                                       # Dependências e bibliotecas utilizadas                                
 ```
 ---
 
@@ -185,6 +189,29 @@ print(predicoes)
 ```
 ---
 
+## 🗄️ Engenharia de Dados e Análise Exploratória em SQL Server (T-SQL)
+
+Além do pipeline em Python, a base estruturada foi modelada e auditada em **Microsoft SQL Server (T-SQL)** para validação de integridade, carga em lote e extração rápida de indicadores operacionais:
+
+* 🏗️ **[`Criar_BD_Petrobras_2007_2017.sql`](Criar_BD_Petrobras_2007_2017.sql):** Criação da tabela relacional (`DDL`) com tratamento de tipos para evitar erros de truncamento em nomes extensos de agentes regulados (`VARCHAR(MAX)`) e ingestão de alta performance utilizando **`BULK INSERT`** com `TABLOCK`.
+* 🔍 **[`Consultas_Petrobras_2007_2017.sql`](Consultas_Petrobras_2007_2017.sql):** Consultas analíticas em T-SQL contemplando:
+  * Segmentação por agente regulado (ex: *RAÍZEN S.A.*) e recortes temporais (foco no pico histórico de **2014**).
+  * Ranking de volume de registros por produto e identificação de regiões líderes de origem e destino (`GROUP BY`, `ORDER BY`, `TOP 1`).
+  * Cálculo de participação percentual (`Share %`) por região utilizando subqueries e conversão decimal (`CAST` / `DECIMAL(5,2)`).
+
+<details>
+<summary>📸 Clique para visualizar as evidências de execução no SQL Server (SSMS)</summary>
+
+<br>
+
+**1. Criação da Estrutura e Carga via `BULK INSERT`:**
+![Execução Criar BD SQL](imagem_SQL_Criar_BD_Petrobras_2007_2017.png)
+
+**2. Execução das Consultas Analíticas e KPIs:**
+![Execução Consultas SQL](imagem_SQL_Consultas_Petrobras_2007_2017.png)
+
+</details>
+
 ## 📊 Dashboard Executivo & Visualização de Dados (Power BI)
 
 Para conectar a análise exploratória e a modelagem preditiva à tomada de decisão estratégica, foi desenvolvido um painel interativo no **Microsoft Power BI** (utilizando uma amostra otimizada de **100.000 registros** da base consolidada para garantir leveza e agilidade na reprodução), estruturado em três visões complementares de negócio.
@@ -224,12 +251,13 @@ Para conectar a análise exploratória e a modelagem preditiva à tomada de deci
 
 * **Resultado da Modelagem Preditiva:** Apresentação executiva do **Random Forest Otimizado** como modelo vencedor dos experimentos (*Duelo 3*), atingindo **F1-Score de 83% (0,83)** .
 * **Valor para o Negócio:** Tradução técnica para a área de logística e distribuição, destacando o equilíbrio entre **performance preditiva**, **interpretabilidade das árvores de decisão** e **baixo custo computacional**.
-
+  
 ---
 
 ## 🚀 Conclusão
 
-- O projeto demonstrou a eficácia da integração ponta a ponta entre **Engenharia de Dados, Machine Learning e Business Intelligence** para prever padrões de consumo de combustíveis.
+- O projeto demonstrou a eficácia da integração ponta a ponta entre **Banco de Dados Relacional (SQL Server), Engenharia de Dados, Machine Learning (Python) e Business Intelligence (Power BI)** para analisar e prever padrões de consumo de combustíveis.
+- A estruturação e auditoria em **SQL Server (T-SQL)** garantiram integridade na ingestão massiva de dados (`BULK INSERT`) e agilidade na extração de indicadores operacionais e participações regionais.
 - O **Random Forest otimizado** consolidou-se como modelo campeão (**F1-Score de 0,83**), garantindo robustez, estabilidade e aplicabilidade em segmentações logísticas.
 - A entrega em **Power BI** traduz os resultados técnicos em indicadores executivos claros para tomada de decisão comercial e operacional.
 
