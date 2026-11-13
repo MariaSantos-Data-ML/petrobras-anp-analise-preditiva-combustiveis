@@ -7,19 +7,19 @@ O propósito final da arquitetura desenvolvida não se limitou a analisar o comp
 
 ### 🔹Arquitetura e Engenharia de Dados
 
-📊 Fonte: ANP – Dados Abertos
-📦 Movimentação de derivados de petróleo
+📊 **Fonte: ANP – Dados Abertos**
+📦 **Movimentação de derivados de petróleo**
 
-- Arquivo: Combustíveis líquidos
+- **Arquivo:** Combustíveis líquidos
   Escolher o link Dados abertos (.zip) (atualizado em 03/09/2026)
 
-- Link direto para download: **https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/mdpg/liquidos.zip** - (Pasta zipada. Nome do arquivo: **Liquidos_Vendas_Historico_2007_a_2017.csv**, com **710.832 linhas**).
+- **Link direto para download:** https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/mdpg/liquidos.zip - (Pasta zipada. Nome do arquivo: **Liquidos_Vendas_Historico_2007_a_2017.csv**, com 710.832 linhas).
 
 A base primária extraída da ANP continha 710.832 registros sem cabeçalho nativo (Liquidos_Vendas_Historico_2007_a_2017.csv). O processo de engenharia de dados envolveu etapas rigorosas:
 
-- Inclusão e Limpeza: Aplicação manual de cabeçalhos estruturados contendo variáveis como ano, mes, Agente regulado, nome_produto, regiao_origem, uf_origem, regiao_destino, uf_destino, mercado_destinatario e quant_vendas.
+- **Inclusão e Limpeza:** Aplicação manual de cabeçalhos estruturados contendo variáveis como ano, mes, Agente regulado, nome_produto, regiao_origem, uf_origem, regiao_destino, uf_destino, mercado_destinatario e quant_vendas.
 
-- Engenharia de Atributos: Criação da variável temporal date_time e remoção de colunas redundantes ou de baixa interpretabilidade (codigo_produto).
+- **Engenharia de Atributos:** Criação da variável temporal date_time e remoção de colunas redundantes ou de baixa interpretabilidade (codigo_produto).
 
 ---
 
@@ -36,13 +36,14 @@ O cenário original apresentava um dataset altamente desbalanceado. O principal 
 ## 📁 Estrutura do Projeto
 
 O repositório está organizado com os seguintes arquivos e artefatos principais:
-
-├── Petrobras_Vendas_2007_a_2017.ipynb            # Jupyter Notebook principal com todo o código e análise
+```text
+├── .gitignore                                     # Arquivos e pastas ignorados 
 ├── Análise Preditiva e Logística de Vendas.pptx  # Apresentação do Relatório executivo do projeto (slides)
+├── Petrobras_PowerBI_Final.pbix                  # Dashboard Executivo & Visualização de Dados (Power BI)
+├── Petrobras_Vendas_2007_a_2017.ipynb            # Jupyter Notebook principal com todo o código e análise
 ├── README.md                                     # Documentação principal do projeto
-├──.gitignore                                     # Arquivos e pastas ignorados 
 └── requirements.txt                              # Dependências e bibliotecas utilizadas
-
+```
 ---
 
 ## 🎯 Objetivos
@@ -89,8 +90,7 @@ Para viabilizar o uso de algoritmos intensivos (como **GridSearchCV** e **SMOTE*
   - Menor custo computacional.  
   - Manutenção da qualidade analítica.  
   - Base reduzida, mas ainda robusta para treinar e validar modelos de ML.
-
-
+  - 
 ---
 
 ## 📊 Resultados Consolidados
@@ -185,15 +185,53 @@ print(predicoes)
 ```
 ---
 
-## 🚀 Conclusão
+## 📊 Dashboard Executivo & Visualização de Dados (Power BI)
 
-* O projeto demonstrou a eficácia do uso de **Machine Learning** para prever padrões de consumo de combustíveis.
-* O **Random Forest otimizado** consolidou-se como modelo campeão, garantindo robustez, estabilidade e aplicabilidade em segmentações logísticas.
+Para conectar a análise exploratória e a modelagem preditiva à tomada de decisão estratégica, foi desenvolvido um painel interativo no **Microsoft Power BI** (utilizando uma amostra otimizada de **100.000 registros** da base consolidada para garantir leveza e agilidade na reprodução), estruturado em três visões complementares de negócio.
+
+> 📥 **[Clique aqui para baixar o arquivo original do Power BI (`Petrobras_PowerBI_Final.pbix`)](https://github.com/MariaSantos-Data-ML/petrobras-anp-analise-preditiva-combustiveis/raw/main/Petrobras_PowerBI_Final.pbix)**
 
 ---
 
-📊 **Próximos Passos (Business Intelligence):**
-Posteriormente, será integrado e apresentado um dashboard interativo em Power BI, utilizando a base de importância dos recursos.
+### 1️⃣ Página 1: Panorama Nacional de Vendas de Derivados de Petróleo (`Vendas`)
+
+<img width="1172" height="657" alt="Vendas_Petrobras" src="https://github.com/user-attachments/assets/54d6ffb5-9242-489c-9309-9352b9cdd510" />
+
+* **Análise Temporal (`2007 a 2016`):** Evolução anual do volume de vendas, evidenciando o crescimento consistente até o pico de **4,6 Bi** em 2014–2015 e a retração registrada no recorte de 2016 (**1,1 Bi** até março/2016).
+* **Distribuição Regional:** A região **Sudeste (SE)** concentra **63,66%** de todas as vendas nacionais, seguida pelo **Nordeste (NE)** com **12,43%** e **Sul (S)** com **11,39%**.
+* **Ranking Estadual:** **São Paulo (SP)** lidera isoladamente o consumo nacional, seguido por **Minas Gerais (MG)**, **Amazonas (AM)**, **Paraná (PR)** e **Rio de Janeiro (RJ)**.
+* **Interatividade:** Segmentador dinâmico por **Período Apurado** para exploração granular da série histórica.
+
+---
+
+### 2️⃣ Página 2: Consolidação de KPIs e Mix de Produtos (`Importância dos resultados Finais`)
+
+<img width="1170" height="654" alt="Petrobras_Importancia_Resultados_Finais" src="https://github.com/user-attachments/assets/3050d438-9337-477d-b3ca-c407a060fc17" />
+
+* **Indicadores Executivos (KPIs):**
+  * **Retrato do Presente (`R$ 31,9 Bi`):** Volume consolidado atual das operações.
+  * **Histórico Consolidado (`201 Mi`):** Base histórica acumulada para referência evolutiva.
+  * **Crescimento Acumulado (`24.002%`):** Expansão total apurada ao longo do período analisado.
+  * **Estado Líder (`SP`):** Confirmação da hegemonia de São Paulo no volume nacional.
+* **Desempenho por Combustível:** A **Gasolina C** lidera o volume comercializado (**1,07 bilhão**), seguida por **Diesel B** (**975,7 milhões**), **Etanol Hidratado** (**776,9 milhões**) e **Óleo Combustível** (**367,6 milhões** — único segmento liderado pelo **Pará - PA**).
+* **Data Storytelling:** Painel lateral de narrativa executiva sintetizando os principais direcionadores de negócio.
+
+---
+
+### 3️⃣ Página 3: Integração com Machine Learning (`Modelo Campeão`)
+
+<img width="1167" height="658" alt="Petrobras_Modelo_Campeao" src="https://github.com/user-attachments/assets/f5d7283f-68ce-4a0c-a630-d7bddc6bdb28" />
+
+* **Resultado da Modelagem Preditiva:** Apresentação executiva do **Random Forest Otimizado** como modelo vencedor dos experimentos (*Duelo 3*), atingindo **F1-Score de 83% (0,83)** .
+* **Valor para o Negócio:** Tradução técnica para a área de logística e distribuição, destacando o equilíbrio entre **performance preditiva**, **interpretabilidade das árvores de decisão** e **baixo custo computacional**.
+
+---
+
+## 🚀 Conclusão
+
+- O projeto demonstrou a eficácia da integração ponta a ponta entre **Engenharia de Dados, Machine Learning e Business Intelligence** para prever padrões de consumo de combustíveis.
+- O **Random Forest otimizado** consolidou-se como modelo campeão (**F1-Score de 0,83**), garantindo robustez, estabilidade e aplicabilidade em segmentações logísticas.
+- A entrega em **Power BI** traduz os resultados técnicos em indicadores executivos claros para tomada de decisão comercial e operacional.
 
 ---
 
@@ -203,4 +241,4 @@ Projeto desenvolvido com foco em aplicações reais na indústria energética br
 
 **Maria Santos** — Analista/Cientista de Dados — Autônoma  
 Campinas/SP, Brasil  
-Data: **09/2026**
+Data: **09/2026** | Atualizado em: **11/2026**
